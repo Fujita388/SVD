@@ -69,13 +69,13 @@ def all_search(input_list):
 #np配列をファイルに保存
 def np_array(input_list):
     all_search(input_list)
-    np.save('study/svd/three_eyes', np.array(a))        #リストをnp配列に直して保存
+    np.save('study/svd_study/three_eyes', np.array(a))        #リストをnp配列に直して保存
     return 
 
 
 #np配列のロード
-get_np = np.load('study/svd/three_eyes.npy')          #もとの評価値の配列をロード
-#get_np = np.load('study/svd/three_eyes2.npy')       #svdした評価値の配列をロード
+get_np = np.load('study/svd_study/three_eyes.npy')          #もとの評価値の配列をロード
+#get_np = np.load('study/svd_study/three_eyes2.npy')       #svdした評価値の配列をロード
 
 
 #与えた盤面(入力した文字列)に対する評価値を返す
@@ -122,7 +122,7 @@ def play():
     return win(input_list)
 
 
-#試合を100回繰り返した平均値を計算(戦績)
+#戦績を、試合を100回繰り返した平均値とした
 def play100():
     s = 0
     for _ in range(100):
@@ -132,7 +132,7 @@ def play100():
 
 #戦績とランクのグラフをプロット
 def make_plot():
-    original_np = np.load('study/svd/three_eyes.npy')  #もとの評価値をロード
+    original_np = np.load('study/svd_study/three_eyes.npy')  #もとの評価値をロード
     original_np2 = original_np.reshape(81, 243)        #もとの行列をreshape
     u, s, v = linalg.svd(original_np2)                 #svd
     x = []
@@ -147,7 +147,7 @@ def make_plot():
         #もとの配列に復元#
         svd_np = np.array(A @ B)
         svd_np2 = svd_np.reshape((3,3,3,3,3,3,3,3,3))     
-        np.save('study/svd/three_eyes2', svd_np2)
+        np.save('study/svd_study/three_eyes2', svd_np2)
         #グラフのx,y成分#
         x.append(i)
         y.append(play100())
@@ -155,6 +155,7 @@ def make_plot():
     plt.ylabel("result")
     plt.plot(x, y)
     plt.show()
+
 
 make_plot()
 
