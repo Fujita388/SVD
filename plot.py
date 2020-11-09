@@ -157,9 +157,28 @@ def make_plot():
     plt.show()
 
 
-make_plot()
+#make_plot()
+
+
+#フロベニウスノルムの相対誤差
+def frob():
+    original_np = np.load('study/svd_study/three_eyes.npy')  #もとの評価値をロード
+    original_np2 = original_np.reshape(81, 243)        #もとの行列をreshape
+    u, s, v = linalg.svd(original_np2)                 #svd
+    norm = np.sqrt(np.sum(s * s))                      #sのフロベニウスノルム
+    x = []
+    y = []
+    for i in range(1, 82):
+        r = i               #残す特異値の数   
+        sr = s[:r]          #特異値を減らしたs
+        norm1 = np.sqrt(np.sum(sr * sr))
+        x.append(i)
+        y.append((norm-norm1) / norm)
+    plt.xlabel("rank")
+    plt.ylabel("difference")
+    plt.plot(x, y)
+    plt.show()    
 
 
 
-
-
+frob()
