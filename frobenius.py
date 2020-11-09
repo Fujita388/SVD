@@ -26,10 +26,9 @@ def frob():
         y.append(norm1/ norm)
     plt.xlabel("rank")
     plt.ylabel("difference")
-    print(y)
-    # plt.yscale('log')
-    # plt.plot(x, y)
-    # plt.show() 
+    plt.yscale('log')
+    plt.plot(x, y)
+    plt.show() 
 
 
 #実行
