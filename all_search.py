@@ -79,5 +79,5 @@ list_0 = list(map(int, list(s)))
 
 #draw_grid(list_0)
 #print(all_search(list_0))    #全探索した評価値
-#print(Q(list_0))             #再帰なしの評価値
+
 
