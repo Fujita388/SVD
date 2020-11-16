@@ -21,7 +21,6 @@ def make_plot():
     X = original_np.copy()        
     u, s, v = linalg.svd(X)                              #svd
     norm = np.sqrt(np.sum(X * X))                        #sのフロベニウスノルム
-    #####norm = np.sum(X * X)                                 #sのフロベニウスノルムの二乗
     for r in range(0, 82):
     #####for r in range(0, 28):
         x.append(r / 81)                         #残した特異値の割合
@@ -38,7 +37,6 @@ def make_plot():
         B = sr @ vr
         Y = A @ B                                   #近似した行列
         norm1 = np.sqrt(np.sum((X-Y) * (X-Y)))     #フロベニウスノルム
-        #####norm1 = np.sum((X-Y) * (X-Y))               #フロベニウスノルムの二乗
         y4.append(norm1 / norm)
     plt.xlabel("left singular value ratio")
     ######plt.ylabel("ratio")
