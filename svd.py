@@ -3,7 +3,7 @@ from scipy import linalg
 
 
 #評価値をsvd
-original_np = np.load('study/svd/three_eyes.npy')
+original_np = np.load('study/svd_study/three_eyes.npy')
 print(original_np.shape)                           #もとの行列のshape
 original_np2 = original_np.reshape(81, 243)        #もとの行列をreshape
 u, s, v = linalg.svd(original_np2)                 #svd
@@ -11,7 +11,7 @@ print(f"u: {u.shape}")
 print(f"s: {s.shape}")
 print(f"v: {v.shape}")
 
-r = 10               #残す特異値の数   
+r = 30               #残す特異値の数   
 ur = u[:, :r]
 sr = np.diag(np.sqrt(s[:r]))       #sの平方根
 vr = v[:r, :]
@@ -30,6 +30,6 @@ svd_np2 = svd_np.reshape((3,3,3,3,3,3,3,3,3))     #もとの配列に復元
 
 
 #svdした評価値のnp配列をファイルに保存
-np.save('study/svd/three_eyes2', svd_np2)
+np.save('study/svd_study/three_eyes2', svd_np2)
 
 
