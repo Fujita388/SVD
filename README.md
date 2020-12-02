@@ -1,1 +1,2 @@
-svdを用いた三目並べにおけるデータ圧縮
+# Using SVD(Singular Value Decomposition) for data-approximation of Tic-Tac-Toe AI
+
