@@ -9,7 +9,7 @@ from scipy import linalg
 import main
 
 
-get_np = np.load('study/svd/three_eyes.npy')   
+get_np = np.load('three_eyes.npy')   
 
 
 #もとの評価値の配列をsvdする            r:残す特異値の数   
@@ -66,9 +66,31 @@ def make_plot():
 
     plt.show()
 
+#make_plot()
 
+#datファイル作成
+def save_file():
+    with open("task1.dat", "w") as f:
+        X = get_np.reshape(81,243)     #もとの行列をreshape         
+        u, s, v = linalg.svd(X)                              #svd
+        norm = np.sqrt(np.sum(X * X))                        #sのフロベニウスノルム
+        for r in range(0, 82):                      
+            #battle#
+            y1 = main.battle(get_np, approx(get_np, r))[0]    #originalが勝つ割合
+            y2 = main.battle(get_np, approx(get_np, r))[1]    #svdが勝つ割合
+            y3 = main.battle(get_np, approx(get_np, r))[2]    #引き分けの割合
+            #frobenius#  
+            ur = u[:, :r]
+            sr = np.diag(np.sqrt(s[:r]))                #sの平方根
+            vr = v[:r, :]
+            A = ur @ sr
+            B = sr @ vr
+            Y = A @ B                                   #近似した行列
+            norm1 = np.sqrt(np.sum((X-Y) * (X-Y)))     #フロベニウスノルム
+            rate = (A.size+B.size) / X.size
+            y4 = norm1 / norm
+            x = rate                        #残した特異値の割合 
+            f.write("{} {} {} {} {}\n".format(x, y1, y2, y3, y4))
 
-make_plot()
-
- 
+save_file()
 
