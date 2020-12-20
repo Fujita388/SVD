@@ -87,10 +87,33 @@ def save_file():
             B = sr @ vr
             Y = A @ B                                   #近似した行列
             norm1 = np.sqrt(np.sum((X-Y) * (X-Y)))     #フロベニウスノルム
-            rate = (A.size+B.size) / X.size
-            y4 = norm1 / norm
-            x = rate                        #残した特異値の割合 
+            x = (A.size+B.size) / X.size            #圧縮率
+            y4 = norm1 / norm                #フロべニウスノルムの相対誤差
             f.write("{} {} {} {} {}\n".format(x, y1, y2, y3, y4))
 
-save_file()
+#save_file()
+
+
+#5回分の標準偏差を算出しdatファイルを作成
+def std_calc():
+	with open("task1_std.dat", "w") as f:
+		for r in range(0, 82):                      
+			y1 = []
+			y2 = []
+			y3 = []
+			for _ in range(5):     #5回分のループ
+				y1.append(main.battle(get_np, approx(get_np, r))[0])    #originalが勝つ割合
+				y2.append(main.battle(get_np, approx(get_np, r))[1])    #svdが勝つ割合
+				y3.append(main.battle(get_np, approx(get_np, r))[2])    #引き分けの割合
+			ans1 = np.std(y1)
+			ans2 = np.std(y2)
+			ans3 = np.std(y3)
+			f.write("{} {} {}\n".format(ans1, ans2, ans3))	
+
+
+std_calc()
+
+
+
+
 
