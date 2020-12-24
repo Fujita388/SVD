@@ -78,9 +78,6 @@ def make_plot():
 #5回分の平均と標準偏差を算出しdatファイルを作成
 def save_file():
 	with open("task1.dat", "w") as f:
-		X = get_np.reshape(81,243)             
-		u, s, v = linalg.svd(X)            
-		norm = np.sqrt(np.sum(X * X))        
 		for r in range(0, 82):            
 			#圧縮率
 			x = approx(get_np, r)[1]
