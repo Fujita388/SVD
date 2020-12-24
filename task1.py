@@ -26,7 +26,11 @@ def approx(X, r):
 	Y = A @ B
 	#圧縮率
 	rate = (A.size + B.size) / X.size  
-	return [Y.reshape((3,3,3,3,3,3,3,3,3)), rate]
+	#フロべニウスノルムの相対誤差
+	norm = np.sqrt(np.sum(X * X))
+	norm1 = np.sqrt(np.sum((X-Y) * (X-Y)))
+	frob = norm1 / norm
+	return [Y.reshape((3,3,3,3,3,3,3,3,3)), rate, frob]
 
 
 #戦績とフロベニウスノルムをプロット
@@ -95,9 +99,7 @@ def save_file():
 			y2_std = np.std(y2)
 			y3_std = np.std(y3)
 			#frobenius#  
-			Y = approx(get_np, r)[0].reshape(81, 243)
-			norm1 = np.sqrt(np.sum((X-Y) * (X-Y)))     #フロベニウスノルム
-			y4 = norm1 / norm                #フロべニウスノルムの相対誤差
+			y4 = approx(get_np, r)[2]               
 			f.write("{} {} {} {} {} {} {} {}\n".format(x, y1_m, y2_m, y3_m, y4, y1_std, y2_std, y3_std))
 
 
