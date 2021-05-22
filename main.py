@@ -68,11 +68,7 @@ def all_search(input_list):
 def np_array(input_list):
     all_search(input_list)
     np.save('study/svd/three_eyes', np.array(a))        #リストをnp配列に直して保存
-    return 
-
-
-#もとの評価値の配列をロード
-#get_np = np.load('study/svd/three_eyes.npy')         
+    return         
 
 
 #与えた盤面(入力した文字列)に対する評価値を返す
@@ -144,11 +140,15 @@ def battle(np1, np2):
 
 
 
-
 #実行
-s = "000000000"
+s = "100021212"
 list_0 = list(map(int, list(s)))   
 
 #np_array(list_0)   #np配列をファイルに保存
 
 #draw_grid(list_0)
+
+#ans = [0, 1, 1/3, 0]
+#print(softmax(np.array(ans)))
+# original_np = np.load('study/svd/three_eyes.npy')
+# print(original_np[1][2][0][0][2][1][2][1][1])
