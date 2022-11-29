@@ -1,4 +1,4 @@
-# Using SVD(Singular Value Decomposition) for data-approximation of Tic-Tac-Toe AI
+# Applying SVD(Singular Value Decomposition) to data-approximation of Tic-Tac-Toe AI
 
 
 ## task1.py
