@@ -80,7 +80,7 @@ def Q(input_list, np1):
 def softmax(x):
 #	a = 10  # 逆温度w
 #	a = 1
-	a = 5
+	a = 0.1
 	u = np.sum(np.exp(a*x))
 	return np.exp(a*x) / u
 
