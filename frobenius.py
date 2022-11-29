@@ -1,3 +1,4 @@
+# フロべニウスノルムの相対誤差を算出するテストコード
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import linalg

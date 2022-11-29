@@ -67,7 +67,7 @@ def all_search(input_list):
 #np配列をファイルに保存
 def np_array(input_list):
     all_search(input_list)
-    np.save('study/svd/three_eyes', np.array(a))        #リストをnp配列に直して保存
+    np.save('./three_eyes', np.array(a))        #リストをnp配列に直して保存
     return         
 
 
@@ -78,9 +78,11 @@ def Q(input_list, np1):
 
 #softmax関数
 def softmax(x):
-    a = 10
-    u = np.sum(np.exp(a*x))
-    return np.exp(a*x) / u
+#	a = 10  # 逆温度w
+#	a = 1
+	a = 5
+	u = np.sum(np.exp(a*x))
+	return np.exp(a*x) / u
 
 
 #softmax関数で次の手の評価値を確率化         
@@ -140,14 +142,14 @@ def battle(np1, np2):
 
 
 
-#実行
-s = "100021212"
+# 全探索してnp配列に作成
+s = "000000000"
 list_0 = list(map(int, list(s)))   
+np_array(list_0)   #np配列をファイルに保存
 
-#np_array(list_0)   #np配列をファイルに保存
 
+# 関数のテスト
 #draw_grid(list_0)
-
 #ans = [0, 1, 1/3, 0]
 #print(softmax(np.array(ans)))
 # original_np = np.load('study/svd/three_eyes.npy')

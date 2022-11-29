@@ -1,7 +1,5 @@
 .DS_Store
 __pycache__
-svd_*
 test.py
 *.npy
-
-
+task1.dat
